@@ -1,0 +1,28 @@
+<div *ngFor="let residence of filteredResidences; let i = index">
+   
+    <h3>{{ residence.name }}</h3>
+    
+    
+    <p>Status: {{ residence.status }}</p>
+    
+   
+    <button (click)="toggleAddress(i)">Show Location</button>
+    <button (click)="addToFavorites(residence)">❤️ Like</button>
+    <button [routerLink]="['/residence', residence.id]">Voir Détails</button>
+
+    
+   
+    <ng-container [ngSwitch]="residence.status">
+      <span *ngSwitchCase="'Disponible'" style="color: green;">✔ Disponible</span>
+      <span *ngSwitchCase="'En Construction'" style="color: orange;">🔧 En Construction</span>
+      <span *ngSwitchCase="'Vendu'" style="color: red;">❌ Vendu</span>
+    </ng-container>
+  </div>
+  
+  
+  <input
+    type="text"
+    placeholder="Rechercher par adresse..."
+    [(ngModel)]="searchTerm"
+  />
+  
