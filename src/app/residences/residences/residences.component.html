@@ -1,0 +1,47 @@
+<h2 style="text-align: center; padding: 2%;">Liste Residences</h2>
+
+<!-- Input de recherche -->
+<div class="container">
+  <input [(ngModel)]="searchAddress" placeholder="Rechercher par adresse" class="form-control mb-4" />
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Utilisation de *ngFor pour afficher chaque résidence -->
+    <div class="col-md-3" style="margin-bottom: 20px" *ngFor="let r of filteredResidences">
+      <div class="card" style="width: 18rem">
+        <!-- img de la résidence -->
+        <img class="card-img-top" [src]="r.image" alt="no" />
+
+        <div class="card-body">
+        
+          <h5 class="card-title">{{ r.name }}</h5>
+
+          <div>
+            <span>Adresse : {{ r.address }}</span>
+          </div>
+          <div>
+            <button class="btn btn-primary mt-2" [routerLink]="['/details',r.id]"  >Voir details</button>
+
+          </div>
+
+          <!-- Statut de la résidence avec ngSwitch -->
+          <div>
+            <span>Statut : </span>
+            <span [ngSwitch]="r.status">
+              <span *ngSwitchCase="'Disponible'" style="color: green;">Disponible</span>
+              <span *ngSwitchCase="'En Construction'" style="color: orange;">En Construction</span>
+              <span *ngSwitchCase="'Vendu'" style="color: red;">Vendu</span>
+            </span>
+          </div>
+
+          <button (click)="showLocation(r)" class="btn btn-primary mt-2">Show Location</button>
+
+          
+          <button (click)="addToFavorites(r)" class="btn btn-success mt-2">Like</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
