@@ -8,7 +8,7 @@
    
     <button (click)="toggleAddress(i)">Show Location</button>
     <button (click)="addToFavorites(residence)">❤️ Like</button>
-    <button [routerLink]="['/residence', residence.id]">Voir Détails</button>
+    <a [routerLink]="['/residence', residence.id]" class="btn btn-link">Voir Détails</a>
 
     
    
